@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Tachkila V2</title>
+</head>
+
+<body>
+
+    <!-- HEADER  -->
+    <header class="flex justify-between items-center bg-slate-900 px-4 h-18"> <!-- flex-wrap nécessaire pour le responsive -->
+        <div class="flex items-center">
+            <img src="/files/tachkila_v2 logo.png" alt="Atlas Fc Logo" class="object-contain h-30 w-30">
+            <div class="logo_atlas_text ">
+            <h1 class="font-bold text-white">Tachkila v2</h1>
+             <p class="font-bold text-white">Atlas Fc</p>
+        </div>
+        </div>
+
+        <nav aria-label="Menu_de_sélection_des_postes">
+            <ul class="flex gap-4 text-white font-bold menu" id="menue">
+                <li> <a href="index.html" class=" bg-amber-400">Effectif</a></li>
+                <li> <a href="composition.html" class=" bg-indigo-800">composition</a></li>
+                <li> <a href="matchs.html" class="lien-actif bg-red-600">Matchs</a></li>
+                
+                
+            </ul>
+        </nav>
+
+        <div class="flex items-center gap-3">
+            <ul class="flex gap-4 text-white font-bold">
+                <li class="bg-amber-400 px-3 py-2.5 rounded-full">• GB</li>
+                <li class="bg-indigo-800 px-3 py-2.5 rounded-full">• DEF</li>
+                <li class="bg-emerald-600 px-3 py-2.5 rounded-full">• MIL</li>
+                <li class="bg-red-600 px-3 py-2.5 rounded-full">• ATT</li>
+            </ul>
+        </div>
+    </header>
