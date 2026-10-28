@@ -18,6 +18,6 @@ Application web de gestion d'effectif, de composition tactique et de suivi des m
 
 ## Démo
 
-[Voir sur Vercel](https://tachkilaversion2-gnghvq5gh-ousta-dev.vercel.app)
+[Voir sur Vercel](https://tachkilaversion2.vercel.app/)
 
 
