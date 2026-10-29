@@ -48,3 +48,24 @@ button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
+
+.touts_details{
+    height: auto;
+  
+    display: grid;
+
+    grid-template-columns:repeat(4,1fr) ;
+    gap:20px;
+    padding: 20px 0;
+    
+
+
+}
+.touts_details > article{
+    background-color: #161f30;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #26334d;
+ 
+
+}
