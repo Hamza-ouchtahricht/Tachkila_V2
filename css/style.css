@@ -50,7 +50,7 @@ button:active {
 }
 
 .touts_details{
-    height: auto;
+   
   
     display: grid;
 
@@ -63,9 +63,11 @@ button:active {
 }
 .touts_details > article{
     background-color: #161f30;
-    padding: 20px;
+    padding: 10px;
     border-radius: 12px;
     border: 1px solid #26334d;
+    display: grid;
+    
  
 
 }
