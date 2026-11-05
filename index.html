@@ -15,18 +15,18 @@
     <!-- HEADER  -->
     <header class="flex justify-between items-center bg-slate-900 px-4 h-18"> <!-- flex-wrap nécessaire pour le responsive -->
         <div class="flex items-center">
-            <img src="/files/tachkila_v2 logo.png" alt="Atlas Fc Logo" class="object-contain h-30 w-30">
+            <img src="/files/tachkila_v2 logo.png" alt="Atlas_Fc_Logo" class="object-contain h-30 w-30">
             <div class="logo_atlas_text ">
-            <h1 class="font-bold text-white">Tachkila v2</h1>
-             <p class="font-bold text-white">Atlas Fc</p>
+            
+             
         </div>
         </div>
 
         <nav aria-label="Menu_de_sélection_des_postes">
-            <ul class="flex gap-4 text-white font-bold menu" id="menue">
-                <li> <a href="index.html" class="lien-actif bg-amber-400">Effectif</a></li>
-                <li> <a href="composition.html" class="lien-actif bg-indigo-800">composition</a></li>
-                <li> <a href="matchs.html" class=" bg-red-600">Matchs</a></li>
+            <ul class="flex gap-4 text-white font-bold menu bg-red-600  rounded-full no-underline" id="menue">
+                <li> <a href="index.html" class="lien-actif no-underline ">Effectif</a></li>
+                <li> <a href="composition.html" class="">composition</a></li>
+                <li> <a href="matchs.html" class="">Matchs</a></li>
                 
                 
             </ul>
@@ -53,7 +53,7 @@
     </p>
     </div>
     
- <button class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-2 rounded-lg shadow-md transition duration-200m mr-10 h-10">
+ <button  id="button_ajout"  class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-2 rounded-lg shadow-md transition duration-200m mr-10 h-10">
   +ajoute a player
 </button>
 
@@ -79,12 +79,170 @@
 
 
 </section>
+<section class=" bg-slate-800 searchbuttons ">
+    <article >
+    <input type="text" placeholder="Rechercher un joueur par nom...">
+</article>
+<article class="les_button_search  mr-10">
+    <button>Tous</button>
+    <button>GB</button>
+    <button>DEF</button>
+    <button>MIL</button>
+    <button>ATT</button>
+</article>
+
+</section>
+
+  <div id="liste_joueurs" class="flex flex-wrap gap-2 justify-between"></div>
+
+
  
-        
-        
-
-    
-
-
-</div>
 </main>
+<!--  MODAL : AJOUTER -->
+<div id="modal-overlay" class="modal-overlay">
+    <div class="modal bg-[#161f30] text-white p-6 rounded-2xl w-full max-w-md border border-slate-700/60 shadow-2xl">
+
+        <!-- Header -->
+        <div class="modal__header flex justify-between items-center mb-6">
+            <h2 class="modal__title text-xl font-bold text-white">Ajouter un joueur</h2>
+            <button type="button"  class="modal__close text-slate-400 hover:text-white text-2xl leading-none cursor-pointer" aria-label="Fermer le menu">&times;</button>
+        </div>
+
+        <!-- Formulaire -->
+        <form id="form-joueur" class="modal__form space-y-4" novalidate>
+
+            <!-- Nom complet -->
+            <div class="form-group flex flex-col">
+                <label for="player_fullname" class="text-sm font-semibold text-slate-300 mb-1.5 normal-case">Nom complet</label>
+                <input  onkeyup="hide_message ()" type="text" id="player_fullname"  placeholder="entre full name of player"
+                    class="w-full bg-[#0d1322] border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                <span id="erreur_nom" class="text-red-400 text-xs mt-1"></span>
+            </div>
+
+            <!-- Numéro + Poste (2 colonnes متساويين) -->
+            <div class="demodal_poste grid grid-cols-2 gap-4">
+                <div class="form-group flex flex-col">
+                    <label for="player_number" class="text-sm font-semibold text-slate-300 mb-1.5 normal-case">Numéro</label>
+                    <input type="number" id="player_number" min="1" max="99" 
+                        class="w-full bg-[#0d1322] border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                    <span id="erreur_numero" class="text-red-400 text-xs mt-1"></span>
+                </div>
+
+                <div class="form-group flex flex-col">
+                    <label for="select_position" class="text-sm font-semibold text-slate-300 mb-1.5 normal-case">Poste</label>
+                    <select id="select_position" 
+                        class="w-full bg-[#0d1322] border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                        <option value="" selected disabled>Choisir un poste</option>
+                        <option value="GB">GB — Gardien</option>
+                        <option value="DEF">DEF — Défenseur</option>
+                        <option value="MIL">MIL — Milieu</option>
+                        <option value="ATT">ATT — Attaquant</option>
+                    </select>
+                    <span id="erreur_poste" class="text-red-400 text-xs mt-1"></span>
+                </div>
+            </div>
+
+            <!-- Âge + Statut (k-kano khawyin 3ndek f l-code) -->
+            <div class="demodal_age_statue grid grid-cols-2 gap-4">
+                <div class="form-group flex flex-col">
+                    <label for="player_age" class="text-sm font-semibold text-slate-300 mb-1.5 normal-case">Âge</label>
+                    <input type="number" id="player_age" min="15" max="50" 
+                        class="w-full bg-[#0d1322] border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                    <span id="erreur_age" class="text-red-400 text-xs mt-1"></span>
+                </div>
+
+                <div class="form-group flex flex-col">
+                    <label for="select_status" class="text-sm font-semibold text-slate-300 mb-1.5 normal-case">Statut</label>
+                    <select id="select_status" 
+                        class="w-full bg-[#0d1322] border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-green-500 focus:ring-1 focus:ring-green-500 transition">
+                        <option value="En forme" selected>En forme</option>
+                        <option value="Blessé">Blessé</option>
+                    </select>
+                    <span id="erreur_statut" class="text-red-400 text-xs mt-1"></span>
+                </div>
+            </div>
+
+            <!-- Boutons Annuler & Enregistrer -->
+            <div class="modal__actions flex justify-end gap-3 pt-4">
+                <button type="button" class="btn btn--cancel px-5 py-2.5 rounded-lg border border-slate-600 bg-transparent text-slate-200 hover:bg-slate-800 font-semibold transition cursor-pointer">
+                    Annuler
+                </button>
+                <button type="button" class="btn btn--save px-5 py-2.5 rounded-lg bg-[#00a843] hover:bg-green-600 text-white font-semibold transition cursor-pointer" id="Enregistrer_button">
+                    Enregistrer
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+    <!--  MODAL : SUPPRIMER  -->
+    <div id="modal_supprime" class="modal_supprime">
+        <div class="modal_sup">
+
+            <div class="modal__header">
+                <h2 class="modal__title">Supprimer un joueur</h2>
+                <button type="button" class="modal__supp_close" aria-label="Fermer le menu">&times;</button>
+            </div>
+
+            <!-- Le JS écrit ici le nom du joueur -->
+            <p id="texte_supprime" class="text-white mb-4"></p>
+
+            <div class="modal_suprimme_actions">
+                <button type="button" class="btn_supprime_annuler">Annuler</button>
+                <button type="button" id="btn_confirmer_supprime" class="btn btn--save">Supprimer</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- MODAL : MODIFIER  -->
+    <div id="modal_modifier" class="modal_modifier">
+        <div class="modal_sup">
+
+            <div class="modal__header">
+                <h2 class="modal__title">Modifier un joueur</h2>
+                <button type="button" class="modal__supp_close" aria-label="Fermer le menu">&times;</button>
+            </div>
+
+            <form id="form_modifier" class="modal__form" novalidate>
+
+                <div class="form-group">
+                    <label for="nom_modif">Nom complet du joueur</label>
+                    <input type="text" id="nom_modif" placeholder="Ex : Cristiano Ronaldo">
+                    <span id="erreur_nom_modif" class="text-red-400 text-xs"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="poste_modif">Poste</label>
+                    <select id="poste_modif">
+                        <option value="" selected disabled>Choisir un poste</option>
+                        <option value="GB">GB — Gardien</option>
+                        <option value="DEF">DEF — Défenseur</option>
+                        <option value="MIL">MIL — Milieu</option>
+                        <option value="ATT">ATT — Attaquant</option>
+                    </select>
+                    <span id="erreur_poste_modif" class="text-red-400 text-xs"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="numero_modif">Numéro (1 à 99)</label>
+                    <input type="number" id="numero_modif" placeholder="Ex : 10" min="1" max="99">
+                    <span id="erreur_numero_modif" class="text-red-400 text-xs"></span>
+                    
+                    
+                </div>
+            
+                <div class="modal_suprimme_actions">
+                    <button type="button" class="btn_supprime_annuler">Annuler</button>
+                    <button type="submit" class="btn btn--save">Enregistrer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Message de succès / erreur (géré par le JS) -->
+    <div id="toast" class="fixed top-4 right-4 bg-emerald-600 text-white px-4 py-2 rounded-lg font-bold hidden z-50 transition-all"></div>
+</body>
+</html>

@@ -10,14 +10,14 @@ body{
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100vh;
     }
 .menu a {
 
   font-weight: 500;
   padding-bottom: 4px;
-  border-bottom: 2px solid transparent;
+  
 }
 
 .menu a:hover {
@@ -25,7 +25,7 @@ body{
 }
 
 #menue .lien-actif {
-  color: #FF6B2C;
+  color: #230f06;
   font-weight: 600;
   border-bottom-color: #FF6B2C;
 }
@@ -68,6 +68,258 @@ button:active {
     border: 1px solid #26334d;
     display: grid;
     
- 
+}
+
+.searchbuttons{
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+    align-items: center;
+}
+
+.les_cards{
+    display: grid;
 
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+   display: none; 
+}
+
+
+.modal_supprime {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+   display: none; 
+}
+.modal_modifier {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+   display: none; 
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal_supprime.active {
+  display: flex;
+}
+
+/* ligne qui manquait : sans elle, le modal de modification ne s'affiche pas */
+.modal_modifier.active {
+  display: flex;
+}
+
+.modal {
+  background-color: #1e293b; 
+  border: 1px solid #334155;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5); 
+
+  
+  animation: modal-appear 0.2s ease-out;
+}
+
+.modal_sup {
+  background-color: #1e293b; 
+  border: 1px solid #334155;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 440px;
+  padding: 28px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5); 
+
+  
+  animation: modal-appear 0.2s ease-out;
+}
+
+
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+
+.modal__close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.modal__supp_close {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+
+.modal__close:hover {
+  color: white;
+}
+
+.modal__supp_close:hover {
+  color: white;
+}
+
+
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; 
+}
+
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+
+.form-group input,
+.form-group select {
+  background-color: #0f172a;  
+  border: 1px solid #334155;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4f46e5;
+}
+
+
+.form-group input::placeholder {
+  color: #475569;
+}
+
+
+.modal__actions {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px;
+  margin-top: 8px;
+}
+.modal_suprimme_actions {
+  display: flex;
+  justify-content: flex-end; 
+  gap: 10px;
+  margin-top: 8px;
+}
+
+
+
+
+.btn--cancel {
+  background-color: #334155;
+  color: #94a3b8;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn_supprime_annuler {
+  background-color: #334155;
+  color: #94a3b8;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn--cancel:hover {
+  background-color: #475569;
+  color: white;
+}
+
+.btn_supprime_annuler:hover {
+  background-color: #475569;
+  color: white;
+}
+
+
+.btn--save {
+  background-color: #4f46e5;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.btn--save:hover {
+  background-color: #4338ca;
+}
+
+
+
